@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RegisterNewClient.PersonPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             >
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary" Text="Enviar todos os registros" Command="{Binding SendPeopleCommand}"/>
+
+        <ToolbarItem Order="Secondary" Text="Atualizar todos os registros" Command="{Binding RefreshDataPeopleCommand}"/>
+
+        <ToolbarItem Order="Secondary" Text="Deletar todos os registros" Command="{Binding DeletePeopleCommand}"/>
+
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <ActivityIndicator IsVisible="{Binding VisibilityActivity}" IsRunning="{Binding VisibilityActivity}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+        <ListView x:Name="List" ItemsSource="{Binding Persons}" IsVisible="{Binding VisibilityList}">
+            <ListView.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Id" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
+                    <Label Text="Nome" Grid.Row="0" Grid.Column="1"  HorizontalOptions="Center"/>
+                    <Label Text="Idade" Grid.Row="0" Grid.Column="2"  HorizontalOptions="Center"/>
+                    <Label Text="Telefone" Grid.Row="0" Grid.Column="3"  HorizontalOptions="Center"/>
+
+                </Grid>
+            </ListView.Header>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding PersonId}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
+                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1"  HorizontalOptions="Center"/>
+                            <Label Text="{Binding Age}" Grid.Row="0" Grid.Column="2"  HorizontalOptions="Center"/>
+                            <Label Text="{Binding Telephone}" Grid.Row="0" Grid.Column="3"  HorizontalOptions="Center"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+
+
+
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

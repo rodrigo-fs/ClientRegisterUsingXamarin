@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="RegisterNewClient.ViewModels.ShowDataPage"
+             Title="Apresentar todos os usuários"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:local="clr-namespace:RegisterNewClient">
+
+    <AbsoluteLayout>
+        
+        <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 1, 1"
+               AbsoluteLayout.LayoutFlags="All">
+
+        <Picker x:Name ="PickerList" Margin="8,8,8,8" ItemsSource="{Binding Options }" SelectedIndex="{Binding IndexPicker,Mode=TwoWay}">
+
+        </Picker>
+            <ListView x:Name="Lista" ItemsSource="{Binding Persons}" SelectedItem="{Binding PersonSelected}">
+                <ListView.Behaviors>
+                    <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OnTappedListCommand}" />
+                </ListView.Behaviors>
+                <ListView.Header>
+
+                    <Grid x:Name="Head">
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Id" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"/>
+                        <Label Text="Nome" Grid.Row="0" Grid.Column="2"  HorizontalOptions="StartAndExpand"/>
+                        <Label Text="Idade" Grid.Row="0" Grid.Column="3"  HorizontalOptions="Center"/>
+                        <Label Text="Telefone" Grid.Row="0" Grid.Column="4"  HorizontalOptions="Center"/>
+
+                    </Grid>
+
+                </ListView.Header>
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate x:Name="Body">
+                        <ViewCell>
+                            <Grid>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:CircleImage  Source="{local:ImageResource RegisterNewClient.Resources.userIcon.png}" Grid.Row="0" Aspect="AspectFill" Grid.Column="0" HorizontalOptions="Center">
+                                    <controls:CircleImage.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android">45</On>
+                                        </OnPlatform>
+                                    </controls:CircleImage.WidthRequest>
+                                    <controls:CircleImage.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android">45</On>
+                                        </OnPlatform>
+                                    </controls:CircleImage.HeightRequest>
+                                </controls:CircleImage>
+
+                                <controls:CircleImage  Source="{Binding ImagePath}" Grid.Row="0" Aspect="AspectFill" Grid.Column="0" HorizontalOptions="Center">
+                                    <controls:CircleImage.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android">45</On>
+                                        </OnPlatform>
+                                    </controls:CircleImage.WidthRequest>
+                                    <controls:CircleImage.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android">45</On>
+                                        </OnPlatform>
+                                    </controls:CircleImage.HeightRequest>
+                                </controls:CircleImage>
+
+                                <Label Text="{Binding PersonId}" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"/>
+                                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="2"  HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding Age}" Grid.Row="0" Grid.Column="3"  HorizontalOptions="Center"/>
+                                <Label Text="{Binding Telephone}" Grid.Row="0" Grid.Column="4"  HorizontalOptions="StartAndExpand"/>
+
+                            </Grid>
+
+                        </ViewCell>
+
+                    </DataTemplate>
+                    
+                </ListView.ItemTemplate>
+                
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+
+
+
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+            </ListView>
+        </StackLayout>
+
+        <ContentView  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" IsVisible="{Binding PersonVisibility}" BackgroundColor="#C0808080" Padding="10, 0">
+            
+            <StackLayout BackgroundColor="White" HeightRequest="350" WidthRequest="300" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="0,20,0,0">
+                <StackLayout Orientation="Horizontal">
+                    
+                    <Button Text="Voltar" BackgroundColor="White" VerticalOptions="Start" Command="{Binding OnBackButtonCommand}"/>
+                
+                </StackLayout>
+                
+                <StackLayout>
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <controls:CircleImage Source="{local:ImageResource RegisterNewClient.Resources.userIcon.png}" Grid.Row="0" Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" >
+                        </controls:CircleImage>
+
+                        <controls:CircleImage  Source="{Binding PersonSelected.ImagePath}" Grid.Row="0" Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" >
+                        </controls:CircleImage>
+                        
+                    </Grid>
+                   
+                    <Label Text="Nome" WidthRequest="200" HorizontalOptions="Center" FontSize="Medium"/>
+                    <Label Text="{Binding PersonSelected.Name}" WidthRequest="200" HorizontalOptions="Center" FontSize="Medium"/>
+                    <Label Text="Idade" WidthRequest="200" HorizontalOptions="Center" FontSize="Medium"/>
+                    <Label Text="{Binding PersonSelected.Age}" WidthRequest="200" HorizontalOptions="Center" FontSize="Medium"/>
+                    <Label Text="Telefone" WidthRequest="200" HorizontalOptions="Center" FontSize="Medium"/>
+                    <Label Text="{Binding PersonSelected.Telephone}" WidthRequest="200" HorizontalOptions="Center" FontSize="Medium"/>
+                
+                </StackLayout>
+            
+            </StackLayout>
+        
+        </ContentView>
+
+    </AbsoluteLayout>
+        
+</ContentPage>

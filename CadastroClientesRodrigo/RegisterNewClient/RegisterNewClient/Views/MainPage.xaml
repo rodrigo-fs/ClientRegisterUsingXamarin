@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RegisterNewClient.MainPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Padding="10"
+             Title="Main Page"
+             xmlns:local="clr-namespace:RegisterNewClient"
+             BackgroundColor="White"
+             >
+
+    <StackLayout>
+        <Grid RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Button Grid.Row="1" Margin ="16,0,16,0" HorizontalOptions="FillAndExpand" Text="&#xf007; Adicionar" FontSize="Medium"  Command="{Binding GetNavigateRegisterPageCommand}"  BackgroundColor="White">
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="fa-solid-900.otf#Font Awesome 5 Free Solid"/>
+                </Button.FontFamily>
+            </Button>
+
+            <Button Grid.Row="2" Margin="16,0,16,0" HorizontalOptions="FillAndExpand" Text="&#xf2c2; Consultar" FontSize="Medium" Command="{Binding GetNavigateConsultPageCommand}" BackgroundColor="White">
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="fa-solid-900.otf#Font Awesome 5 Free Solid"/>
+                </Button.FontFamily>
+            </Button>
+            
+            <Button Grid.Row="3" Margin="16,0,16,0" HorizontalOptions="FillAndExpand" Text="&#xf235; Remover" FontSize="Medium" Command="{Binding GetNavigateDeletePageCommand}" BackgroundColor="White" >
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="fa-solid-900.otf#Font Awesome 5 Free Solid"/>
+                </Button.FontFamily>
+            </Button>
+            <Button Grid.Row="4" Margin="16,0,16,0" HorizontalOptions="FillAndExpand" Text="&#xf0c0; Apresentar usuarios" FontSize="Medium" Command="{Binding GetNavigateShowDataPageCommand}" BackgroundColor="White" >
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="fa-solid-900.otf#Font Awesome 5 Free Solid"/>
+                </Button.FontFamily>
+            </Button>
+            <Button Grid.Row="5" Margin="16,0,16,0" HorizontalOptions="FillAndExpand" Text= "&#xf574; Exportar Json" FontSize="Medium" Command="{Binding GetJsonExport}" BackgroundColor="White">
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="fa-solid-900.otf#Font Awesome 5 Free Solid"/>
+                </Button.FontFamily>
+            </Button>
+            <Button Grid.Row="6" Margin="16,0,16,0" HorizontalOptions="FillAndExpand" Text= "&#xf56d; Importar Json" FontSize="Medium" Command="{Binding GetJsonImport}" BackgroundColor="White" >
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="fa-solid-900.otf#Font Awesome 5 Free Solid"/>
+                </Button.FontFamily>
+            </Button>
+            <Button Grid.Row="7" Margin="16,0,16,0" HorizontalOptions="FillAndExpand" Text= "&#xf233; Rest Api" FontSize="Medium" Command="{Binding GetNavigatePersonPageCommand}" BackgroundColor="White">
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="fa-solid-900.otf#Font Awesome 5 Free Solid"/>
+                </Button.FontFamily>
+            </Button>
+            
+        </Grid>
+    </StackLayout>
+</ContentPage>
